@@ -1,0 +1,5 @@
+1. Faça uma página HTML (pode salvar como .html ou .php, pois não vai possuir nenhum código php) com um formulário (POST) de cadastro contendo os seguintes campos: Nome, E-mail, Sexo (radio), Data de Nascimento, Endereço, Bairro, Estado (select), Cidade, CEP e "deseja receber e-mails?" (checkbox).
+
+2. Crie uma página PHP para receber todas as informações da questão anterior e mostrar na tela de forma organizada (sem usar print_r). (na outra questão, o action da tag form deve apontar para esta página) Verifique se o e-mail e a data de nascimento estão em um formato correto. Caso contrário, redirecione o usuário de volta ao formulário.
+
+OBS.: não precisa verificar a consistência dos dias e meses na data (tipo 30 de fevereiro), pode ser uma validação simples, do tipo apenas ver se tem 3 partes de tamanhos 2, 2 e 4 (no caso do formato dd/mm/yyyy), usando explode. No e-mail também, não precisa nada muito complexo, só dar um explode por @ e ver se tem 2 partes, já está bom (ou usar o validate filter apropriado)
