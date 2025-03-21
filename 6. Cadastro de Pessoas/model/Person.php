@@ -1,5 +1,5 @@
 <?php
-    include_once("Connection.php");
+    include_once("../config/Connection.php");
 
     class Person {
         private string $id;
@@ -7,8 +7,7 @@
         private string $address;
         private string $phone;
  
-        function _construct(string $id, string $name, string $address, string $phone): void {
-            $this->id = $id;
+        function __construct(string $name, string $address, string $phone) {
             $this->name = $name;
             $this->address = $address;
             $this->phone = $phone;
@@ -32,16 +31,28 @@
 
         public function save() {
             $conn = getConnection();
-            $stmt = $conn->prepare("INSERT INTO person (id, name, address, phone)
-            VALUES(:id, :name, :address, :phone)");
+            $stmt = $conn->prepare("INSERT INTO person (name, address, phone)
+            VALUES(:name, :address, :phone)");
     
-            $stmt->bindParam(":id", $this->id);
             $stmt->bindParam(":name", $this->name);
             $stmt->bindParam(":address", $this->address);
             $stmt->bindParam(":phone", $this->phone);
             $stmt->execute();
 
             return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public static function findAll() {
+            $conn = getConnection();
+            $stmt = $conn->query("SELECT * FROM person");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public static function delete(int $id) {
+            $conn = getConnection();
+            $stmt = $conn->prepare("DELETE FROM person WHERE id = :id");
+            $stmt->bindParam(":id", $id);
+            return $stmt->execute();
         }
     }
 ?>
