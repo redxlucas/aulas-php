@@ -7,11 +7,11 @@
     }
 
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"]) && isset($_POST["name"])) {
-        define("FILE_MAX_SIZE", 35 * 1024);
+        define("FILE_MAX_SIZE", 30 * 1024);
 
         $file = $_FILES['file'];
-        $name_file = basename($file['name']);
-        $file_path = PATH . $name_file;
+        $file_name = md5_file($file['tmp_name']) . ".jpg";
+        $file_path = PATH . $file_name;
 
         if($file["size"] > FILE_MAX_SIZE) {
             die("Erro: Tamanho máximo permitido: 30KB.");
@@ -22,5 +22,6 @@
         $_SESSION["name"] = $_POST["name"];
         $_SESSION["image"] = $file_path;
         header("Location: index.php");
+        exit();
     }
 ?>

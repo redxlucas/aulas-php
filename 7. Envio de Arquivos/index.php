@@ -24,8 +24,8 @@
         </p>
     </form>
     <?php if(isset($_SESSION["name"]) && isset($_SESSION["image"])): ?>
-        <p><?php $_SESSION["name"]?></p>
-        <img src="<?php $_SESSION["image"]?>"/>
+        <p><?php echo $_SESSION["name"]?></p>
+        <img src="<?php echo $_SESSION["image"]?>"/>
     <?php endif; ?>
 </body>
 </html>
