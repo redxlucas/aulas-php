@@ -1,7 +1,7 @@
 <?php
     trait DataAccess {
 
-        public function __get($name, $value) {
+        public function __get($name) {
             if(property_exists($this, $name)) {
                 return $this->$name;
             }
@@ -9,7 +9,7 @@
 
         public function __set($name, $value) {
             if(method_exists($this, 'set' . ucfirst($name))) {
-                $this->{`set` . ucfirst($name)}($value);
+                $this->{'set' . ucfirst($name)}($value);
             } else if(property_exists($this, $name)) {
                 $this->$name = $value;
             }
@@ -26,7 +26,7 @@
 
             if(strpos($method, 'get') === 0) {
                 $prop = lcfirst(str_replace('get', '', $method));
-                if(property_exists($this->$prop) && $prop[0] != '_') {
+                if(property_exists($this, $prop) && $prop[0] != '_') {
                     return $this->{$prop};
                 }
             }

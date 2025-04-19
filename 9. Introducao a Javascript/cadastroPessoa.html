@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Pessoa</title>
+</head>
+<body>
+    <script>
+
+        let limit = 1;
+        let personList = []; 
+
+        for(i = 0; i < limit; i++) {
+
+            const person = {
+                name: prompt("Digite o nome da pessoa: "),
+                age: prompt("Digite a idade da pessoa: ")
+            };
+
+            personList.push(person);
+
+            if(confirm("Deseja adicionar mais uma pessoa?")){
+                limit++;
+            }
+        }
+
+        let message = "";
+
+        for(i = 0; i < personList.length; i++) {
+            let person = personList[i];
+            message += `\nNome: ${person.name}\nIdade: ${person.age}\n`
+        }
+
+        alert(`Informações cadastradas: ${message}`);
+
+    </script>
+</body>
+</html>

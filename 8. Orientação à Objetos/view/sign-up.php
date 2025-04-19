@@ -1,6 +1,14 @@
 <?php
-    require_once("../config/Connection.php");
-    getConnection();
+    require_once("../model/User.php");
+
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $user = new User();
+
+        $user->setFullName($_POST["fullName"]);
+        $user->setEmail($_POST["email"]);
+        $user->setPassword($_POST["password"]);
+        $user->setRole($_POST["roles"]);
+    } 
 ?>
 
 <!DOCTYPE html>

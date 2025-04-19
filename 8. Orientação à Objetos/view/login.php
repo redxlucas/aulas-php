@@ -1,6 +1,17 @@
 <?php
-    require_once("../config/Connection.php");
-    getConnection();
+    require_once("../model/Role.php");
+
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $user = new User();
+
+        $user->setName("Administrador");
+    } 
+    
+    $role = new Role();
+
+    $role->setName("Administrador");
+
+    echo $role->getName();
 ?>
 
 <!DOCTYPE html>
